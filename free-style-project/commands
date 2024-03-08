@@ -1,0 +1,71 @@
+*****HTML*****
+ls
+
+docker build -t html-app .
+
+docker tag html-app kishoren27/html-app
+
+docker login -u kishoren27 -p KishoreN@2723
+
+docker push kishoren27/html-app
+
+docker rm -f app
+
+docker run -d -p 80:80 --name  app kishoren27/html-app
+
+docker ps
+
+
+*****JAVA_APPLICATION*****
+ls
+
+mvn clean install
+
+docker build -t  kishoren27/java-app .
+
+docker login -u  kishoren27 -p KishoreN@2723
+
+docker push kishoren27/java-app
+
+docker rm -f java-app
+
+docker run -d --name java-app -p 8081:8080 kishoren27/java-app
+
+docker ps
+
+
+*****NODE-APPLICATION******
+ls
+
+npm install
+
+docker build -t kishoren27/node-application .
+
+docker login -u kishoren27 -p KishoreN@2723
+
+docker push kishoren27/node-application
+
+docker rm -f node-app
+
+docker run -d --name node-app -p 9001:9000 kishoren27/node-application
+
+docker ps
+
+*****PYTHON_APPLICATION*****
+
+ls
+
+docker build -t kishoren27/python-application .
+
+docker login -u kishoren27 -p KishoreN@2723
+
+docker push kishoren27/python-application
+
+docker rm -f python-app
+
+docker run -d --name python-app -p 8001:8000 kishoren27/python-application
+
+docker ps
+
+
+

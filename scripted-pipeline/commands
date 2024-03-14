@@ -45,6 +45,28 @@ node{
 
 }
 
+******************NODE******************
+
+node{
+    stage("clone"){
+        git branch: 'main', url: 'https://github.com/KishoreN27/sample-node-app.git'
+        sh "ls"
+    }
+    stage("docker image"){
+        sh "docker build -t node-script ."
+    }
+    stage("remove image"){
+        sh "docker rm -f node"
+    }
+
+    stage("run container"){
+        sh "docker  run -d -p  9001:9000 --name node node-script"
+    }
+    stage("clean workspace"){
+        cleanWs()
+        }
+
+}
 
 ********************PYTHON***************************
 

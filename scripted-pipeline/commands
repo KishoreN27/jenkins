@@ -1,0 +1,70 @@
+********HTML********
+
+node{
+    stage("clone"){
+        git branch: 'main', url: 'https://github.com/KishoreN27/sample-html-app.git'
+        sh "ls"
+    }
+    stage("build image"){
+        sh "docker build -t html-script ."
+    }
+    
+    stage("remove old port"){
+        sh "docker rm -f html"
+    }
+    stage("run container"){
+        sh "docker run -d -p 81:80 --name html html-script"
+    }
+    stage("clean workspace"){
+    cleanWs()
+    }
+}
+
+***********JAVA***********
+
+node{
+    stage("clone"){
+        git branch: 'main', url: 'https://github.com/KishoreN27/sample-java-spring-app.git'
+        sh "ls"
+    }
+    stage("maven compose"){
+        sh "mvn clean install"
+    }
+    stage("docker image"){
+        sh "docker build -t java-script ."
+    }
+    stage("remove image"){
+        sh "docker rm -f java"
+    }
+    stage("run container"){
+        sh "docker  run -d -p 8082:8080 --name java java-script"
+    }
+    stage("clean workspace"){
+        cleanWs()
+        }
+
+}
+
+
+********************PYTHON***************************
+
+node{
+    stage("clone"){
+        git branch: 'main', url: 'https://github.com/KishoreN27/sample-python-app.git'
+        sh "ls"
+    }
+    stage("docker image"){
+        sh "docker build -t python-script ."
+    }
+    stage("remove image"){
+        sh "docker rm -f python"
+    }
+
+    stage("run container"){
+        sh "docker  run -d -p 8001:8000 --name python python-script"
+    }
+    stage("clean workspace"){
+        cleanWs()
+        }
+
+}
